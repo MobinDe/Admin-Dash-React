@@ -1,16 +1,16 @@
 import axios from 'axios';
+import type { AxiosResponse, AxiosError } from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: '/', // از خود پروژه واکشی کنه
+  baseURL: '/',
   timeout: 5000,
   headers: { 'Content-Type': 'application/json' },
 });
 
-// interceptor برای خطاهای سراسری (اختیاری)
 axiosInstance.interceptors.response.use(
-  (response) => response,
-  (error) => {
-    console.error('API Error:', error);
+  (response: AxiosResponse) => response,
+  (error: AxiosError) => {
+    console.error('API Error:', error.message);
     return Promise.reject(error);
   }
 );
