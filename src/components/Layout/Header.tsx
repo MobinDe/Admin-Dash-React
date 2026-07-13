@@ -2,29 +2,60 @@ import { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import {
   Menu, Search, Bell, User, LogOut, Settings, ChevronDown,
-  ShoppingCart, TrendingUp, Package, MessageSquare, Zap,
-  X, ArrowLeft
+  ShoppingCart, TrendingUp, Package, Zap, X
 } from 'lucide-react';
-import axiosInstance from '../../api/axiosInstance'; // از axios تنظیم‌شده استفاده می‌کنیم
+import axiosInstance from '../../api/axiosInstance';
 
-const AdminHeader = ({ onMenuClick }) => {
+// ========== تایپ‌های اضافه‌شده (حداقل تغییر) ==========
+interface AdminHeaderProps {
+  onMenuClick: () => void;
+}
+
+interface SearchResult {
+  type: 'user' | 'product' | 'order';
+  title: string;
+  subtitle: string;
+  link: string;
+  icon: React.ComponentType<{ className?: string }>;
+}
+
+interface UserData {
+  id: number;
+  name: string;
+  email: string;
+}
+
+interface ProductData {
+  id: number;
+  name: string;
+  price: number;
+}
+
+interface OrderData {
+  id: number;
+  customer: string;
+  total: number;
+}
+// =================================================
+
+const AdminHeader = ({ onMenuClick }: AdminHeaderProps) => {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
+  const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const searchRef = useRef(null);
+  const searchRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
-  // آمار لحظه‌ای
+  // آمار لحظه‌ای (استفاده خواهد شد)
   const stats = {
     orders: 12,
     revenue: '۲.۵M',
     visitors: 847,
   };
 
-  // دریافت داده‌ها برای جستجو (از db.json)
-  const fetchSearchData = async (query) => {
+  // دریافت داده‌ها برای جستجو (همان تابع قبلی + تایپ‌ها)
+  const fetchSearchData = async (query: string) => {
     if (!query.trim()) {
       setSearchResults([]);
       return;
@@ -32,12 +63,9 @@ const AdminHeader = ({ onMenuClick }) => {
     try {
       const { data } = await axiosInstance.get('/db.json');
       const lowerQuery = query.toLowerCase();
+      const results: SearchResult[] = [];
 
-      // ترکیب همه آیتم‌های قابل جستجو
-      const results = [];
-
-      // جستجو در کاربران
-      data.users?.forEach((user) => {
+      data.users?.forEach((user: UserData) => {
         if (
           user.name.toLowerCase().includes(lowerQuery) ||
           user.email.toLowerCase().includes(lowerQuery)
@@ -46,14 +74,13 @@ const AdminHeader = ({ onMenuClick }) => {
             type: 'user',
             title: user.name,
             subtitle: user.email,
-            link: '/users', // یا `/users/${user.id}` اگر صفحه جزئیات دارید
+            link: '/users',
             icon: User,
           });
         }
       });
 
-      // جستجو در محصولات
-      data.products?.forEach((product) => {
+      data.products?.forEach((product: ProductData) => {
         if (product.name.toLowerCase().includes(lowerQuery)) {
           results.push({
             type: 'product',
@@ -65,8 +92,7 @@ const AdminHeader = ({ onMenuClick }) => {
         }
       });
 
-      // جستجو در سفارش‌ها
-      data.orders?.forEach((order) => {
+      data.orders?.forEach((order: OrderData) => {
         if (
           order.customer.toLowerCase().includes(lowerQuery) ||
           String(order.id).includes(lowerQuery)
@@ -81,7 +107,6 @@ const AdminHeader = ({ onMenuClick }) => {
         }
       });
 
-      // محدود کردن نتایج به ۸ مورد
       setSearchResults(results.slice(0, 8));
     } catch (error) {
       console.error('خطا در جستجو:', error);
@@ -89,7 +114,7 @@ const AdminHeader = ({ onMenuClick }) => {
     }
   };
 
-  // Debounce برای جلوگیری از درخواست‌های زیاد
+  // Debounce (بدون تغییر)
   useEffect(() => {
     const timer = setTimeout(() => {
       fetchSearchData(searchQuery);
@@ -97,10 +122,10 @@ const AdminHeader = ({ onMenuClick }) => {
     return () => clearTimeout(timer);
   }, [searchQuery]);
 
-  // بستن منوی جستجو با کلیک بیرون
+  // بستن منوی جستجو با کلیک بیرون (تایپ event)
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (searchRef.current && !searchRef.current.contains(event.target)) {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
         setIsSearchOpen(false);
       }
     };
@@ -108,12 +133,14 @@ const AdminHeader = ({ onMenuClick }) => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const handleResultClick = (link) => {
+  // کلیک روی هر نتیجه (تایپ link)
+  const handleResultClick = (link: string) => {
     setIsSearchOpen(false);
     setSearchQuery('');
     navigate(link);
   };
 
+  // ========== JSX کاملاً مطابق کد اصلی شما ==========
   return (
     <header className="bg-gray-900/90 backdrop-blur-xl border-b border-gray-800 sticky top-0 z-30 w-full shadow-2xl shadow-black/20">
       <div className="px-4 sm:px-6 lg:px-8">
@@ -218,6 +245,7 @@ const AdminHeader = ({ onMenuClick }) => {
 
           {/* سمت چپ */}
           <div className="flex items-center gap-1.5">
+            {/* آمار لحظه‌ای (استفاده از stats) */}
             <div className="hidden lg:flex items-center gap-3 mr-4">
               <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-gray-800 border border-gray-700">
                 <TrendingUp className="h-4 w-4 text-green-400" />
@@ -229,7 +257,7 @@ const AdminHeader = ({ onMenuClick }) => {
               </div>
             </div>
 
-            {/* اعلان‌ها (همان کد قبلی بدون تغییر) */}
+            {/* اعلان‌ها (isNotificationsOpen و setIsNotificationsOpen استفاده می‌شود) */}
             <div className="relative">
               <button
                 onClick={() => setIsNotificationsOpen(!isNotificationsOpen)}
@@ -246,7 +274,6 @@ const AdminHeader = ({ onMenuClick }) => {
                 <>
                   <div className="fixed inset-0 z-40" onClick={() => setIsNotificationsOpen(false)}></div>
                   <div className="origin-top-left absolute left-0 mt-3 w-96 rounded-2xl shadow-2xl bg-gray-800 border border-gray-700 focus:outline-none z-50 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
-                    {/* محتوای اعلان‌ها (همان قبلی) */}
                     <div className="p-4 border-b border-gray-700 bg-gray-750">
                       <div className="flex items-center justify-between">
                         <h3 className="text-base font-bold text-white">اعلان‌ها</h3>
@@ -291,10 +318,9 @@ const AdminHeader = ({ onMenuClick }) => {
               )}
             </div>
 
-            {/* جداکننده */}
             <div className="h-8 w-px bg-gray-700 mx-1 hidden sm:block"></div>
 
-            {/* منوی پروفایل (با لینک‌های واقعی) */}
+            {/* پروفایل (isProfileOpen و setIsProfileOpen استفاده می‌شود) */}
             <div className="relative">
               <button
                 onClick={() => setIsProfileOpen(!isProfileOpen)}
