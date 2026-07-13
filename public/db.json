@@ -1,0 +1,156 @@
+{
+  "users": [
+    { "id": 1, "name": "سارا احمدی", "email": "sara@example.com", "password": "123456", "role": "Admin", "status": "Active", "joined": "۱۴۰۲/۰۶/۱۵" },
+    { "id": 2, "name": "رضا محمدی", "email": "reza@example.com", "password": "123456", "role": "Editor", "status": "Active", "joined": "۱۴۰۲/۰۷/۰۱" },
+    { "id": 3, "name": "مینا رضایی", "email": "mina@example.com", "password": "123456", "role": "Viewer", "status": "Inactive", "joined": "۱۴۰۲/۰۵/۲۰" },
+    { "id": 4, "name": "امیر حسینی", "email": "amir@example.com", "password": "123456", "role": "Editor", "status": "Active", "joined": "۱۴۰۲/۰۸/۰۲" },
+    { "id": 5, "name": "زهرا مرادی", "email": "zahra@example.com", "password": "123456", "role": "Viewer", "status": "Active", "joined": "۱۴۰۲/۰۸/۱۰" },
+    { "id": 6, "name": "محمد کریمی", "email": "mohammad@example.com", "password": "123456", "role": "Admin", "status": "Active", "joined": "۱۴۰۲/۰۴/۲۲" },
+    { "id": 7, "name": "فاطمه نوروزی", "email": "fatemeh@example.com", "password": "123456", "role": "Editor", "status": "Inactive", "joined": "۱۴۰۲/۰۹/۰۵" },
+    { "id": 8, "name": "علی قاسمی", "email": "ali@example.com", "password": "123456", "role": "Viewer", "status": "Active", "joined": "۱۴۰۲/۰۹/۱۲" },
+    { "id": 9, "name": "نرگس صادقی", "email": "narges@example.com", "password": "123456", "role": "Editor", "status": "Active", "joined": "۱۴۰۲/۱۰/۰۱" },
+    { "id": 10, "name": "حسین رحیمی", "email": "hossein@example.com", "password": "123456", "role": "Viewer", "status": "Inactive", "joined": "۱۴۰۲/۱۰/۰۸" },
+    { "id": 11, "name": "مریم اکبری", "email": "maryam@example.com", "password": "123456", "role": "Admin", "status": "Active", "joined": "۱۴۰۲/۱۱/۰۳" },
+    { "id": 12, "name": "پویا جعفری", "email": "pouya@example.com", "password": "123456", "role": "Viewer", "status": "Active", "joined": "۱۴۰۲/۱۱/۱۵" },
+    { "id": 13, "name": "الناز طاهری", "email": "elnaz@example.com", "password": "123456", "role": "Editor", "status": "Active", "joined": "۱۴۰۲/۱۲/۰۱" },
+    { "id": 14, "name": "کیان موسوی", "email": "kian@example.com", "password": "123456", "role": "Viewer", "status": "Inactive", "joined": "۱۴۰۲/۱۲/۲۰" },
+    { "id": 15, "name": "سحر محمدی", "email": "sahar@example.com", "password": "123456", "role": "Editor", "status": "Active", "joined": "۱۴۰۳/۰۱/۱۰" },
+    { "id": 16, "name": "آرش رضوی", "email": "arash@example.com", "password": "123456", "role": "Viewer", "status": "Active", "joined": "۱۴۰۳/۰۱/۱۸" },
+    { "id": 17, "name": "بهار هاشمی", "email": "bahar@example.com", "password": "123456", "role": "Editor", "status": "Inactive", "joined": "۱۴۰۳/۰۲/۰۵" },
+    { "id": 18, "name": "میلاد یوسفی", "email": "milad@example.com", "password": "123456", "role": "Viewer", "status": "Active", "joined": "۱۴۰۳/۰۲/۱۲" },
+    { "id": 19, "name": "نگار فلاحی", "email": "negar@example.com", "password": "123456", "role": "Admin", "status": "Active", "joined": "۱۴۰۳/۰۳/۰۱" },
+    { "id": 20, "name": "شایان احمدپور", "email": "shayan@example.com", "password": "123456", "role": "Editor", "status": "Active", "joined": "۱۴۰۳/۰۳/۰۹" }
+  ],
+  "orders": [
+    { "id": 1001, "customer": "سارا احمدی", "total": 2450000, "status": "تحویل شده", "date": "۱۴۰۲/۰۸/۱۰" },
+    { "id": 1002, "customer": "رضا محمدی", "total": 870000, "status": "در حال پردازش", "date": "۱۴۰۲/۰۸/۱۲" },
+    { "id": 1003, "customer": "زهرا مرادی", "total": 3200000, "status": "لغو شده", "date": "۱۴۰۲/۰۹/۰۱" },
+    { "id": 1004, "customer": "امیر حسینی", "total": 560000, "status": "تحویل شده", "date": "۱۴۰۲/۱۰/۱۵" },
+    { "id": 1005, "customer": "فاطمه نوروزی", "total": 1290000, "status": "ارسال شده", "date": "۱۴۰۳/۰۱/۲۲" }
+  ],
+  "products": [
+    { "id": 101, "name": "هدفون بی‌سیم", "price": 1200000, "stock": 34, "category": "الکترونیک" },
+    { "id": 102, "name": "کیف لپ‌تاپ", "price": 450000, "stock": 12, "category": "لوازم جانبی" },
+    { "id": 103, "name": "ماوس گیمینگ", "price": 890000, "stock": 7, "category": "الکترونیک" },
+    { "id": 104, "name": "پایه نگهدارنده موبایل", "price": 150000, "stock": 60, "category": "لوازم جانبی" },
+    { "id": 105, "name": "کیبورد مکانیکال", "price": 2100000, "stock": 5, "category": "الکترونیک" }
+  ],
+  "categories": [
+    { "id": 1, "name": "الکترونیک", "parentId": null, "productCount": 45 },
+    { "id": 2, "name": "موبایل", "parentId": 1, "productCount": 20 },
+    { "id": 3, "name": "لپ‌تاپ", "parentId": 1, "productCount": 15 },
+    { "id": 4, "name": "لوازم جانبی", "parentId": 1, "productCount": 10 },
+    { "id": 5, "name": "پوشاک", "parentId": null, "productCount": 60 },
+    { "id": 6, "name": "مردانه", "parentId": 5, "productCount": 30 },
+    { "id": 7, "name": "زنانه", "parentId": 5, "productCount": 30 },
+    { "id": 8, "name": "کتاب", "parentId": null, "productCount": 120 },
+    { "id": 9, "name": "خانه و آشپزخانه", "parentId": null, "productCount": 80 },
+    { "id": 10, "name": "ورزشی", "parentId": null, "productCount": 35 }
+  ],
+  "coupons": [
+    { "id": 1, "code": "NOWRUZ1403", "type": "percent", "value": 15, "minOrderAmount": 500000, "maxUses": 100, "usedCount": 23, "startDate": "۱۴۰۳/۰۱/۰۱", "endDate": "۱۴۰۳/۰۱/۱۵", "isActive": true },
+    { "id": 2, "code": "FIXED100", "type": "fixed", "value": 100000, "minOrderAmount": 300000, "maxUses": 50, "usedCount": 50, "startDate": "۱۴۰۳/۰۲/۱۰", "endDate": "۱۴۰۳/۰۳/۱۰", "isActive": false },
+    { "id": 3, "code": "WELCOME5", "type": "percent", "value": 5, "minOrderAmount": 0, "maxUses": null, "usedCount": 120, "startDate": "۱۴۰۲/۰۱/۰۱", "endDate": null, "isActive": true }
+  ],
+  "sales": [
+    { "date": "۱۴۰۳/۰۴/۰۱", "total": 12500000 },
+    { "date": "۱۴۰۳/۰۴/۰۲", "total": 9800000 },
+    { "date": "۱۴۰۳/۰۴/۰۳", "total": 15200000 },
+    { "date": "۱۴۰۳/۰۴/۰۴", "total": 7300000 },
+    { "date": "۱۴۰۳/۰۴/۰۵", "total": 18400000 },
+    { "date": "۱۴۰۳/۰۴/۰۶", "total": 11200000 },
+    { "date": "۱۴۰۳/۰۴/۰۷", "total": 20100000 },
+    { "date": "۱۴۰۳/۰۴/۰۸", "total": 16500000 },
+    { "date": "۱۴۰۳/۰۴/۰۹", "total": 13900000 },
+    { "date": "۱۴۰۳/۰۴/۱۰", "total": 17700000 }
+  ],
+  "topProducts": [
+    { "id": 1, "name": "هدفون بی‌سیم", "sold": 45, "revenue": 54000000 },
+    { "id": 2, "name": "کیبورد مکانیکال", "sold": 32, "revenue": 67200000 },
+    { "id": 3, "name": "ماوس گیمینگ", "sold": 28, "revenue": 24920000 },
+    { "id": 4, "name": "کیف لپ‌تاپ", "sold": 20, "revenue": 9000000 },
+    { "id": 5, "name": "پایه نگهدارنده موبایل", "sold": 15, "revenue": 2250000 }
+  ],
+  "reportSummary": {
+    "totalRevenue": 142300000,
+    "totalOrders": 234,
+    "averageOrderValue": 608000,
+    "comparisonPercent": 12.5
+  },
+ 
+  "discounts": [
+  { "id": 1, "code": "SALE10", "type": "percent", "value": 10, "maxUses": 100, "usedCount": 23, "expiry": "۱۴۰۳/۰۶/۳۱", "status": "active" },
+  { "id": 2, "code": "FIXED50", "type": "fixed", "value": 50000, "maxUses": 50, "usedCount": 12, "expiry": "۱۴۰۳/۰۸/۱۵", "status": "active" },
+  { "id": 3, "code": "WELCOME20", "type": "percent", "value": 20, "maxUses": 200, "usedCount": 198, "expiry": "۱۴۰۳/۰۵/۰۱", "status": "expired" },
+  { "id": 4, "code": "NEWYEAR", "type": "percent", "value": 25, "maxUses": 300, "usedCount": 0, "expiry": "۱۴۰۳/۱۲/۲۹", "status": "active" }
+],
+"reports": {
+  "dailySales": [
+    { "date": "۱۴۰۳/۰۴/۰۱", "total": 5200000 },
+    { "date": "۱۴۰۳/۰۴/۰۲", "total": 3100000 },
+    { "date": "۱۴۰۳/۰۴/۰۳", "total": 7200000 },
+    { "date": "۱۴۰۳/۰۴/۰۴", "total": 4800000 },
+    { "date": "۱۴۰۳/۰۴/۰۵", "total": 6100000 },
+    { "date": "۱۴۰۳/۰۴/۰۶", "total": 3900000 },
+    { "date": "۱۴۰۳/۰۴/۰۷", "total": 8500000 }
+  ],
+  "weeklySales": [
+    { "week": "هفته اول تیر", "total": 29500000 },
+    { "week": "هفته دوم تیر", "total": 31200000 },
+    { "week": "هفته سوم تیر", "total": 28700000 },
+    { "week": "هفته چهارم تیر", "total": 33600000 }
+  ],
+  "monthlySales": [
+    { "month": "فروردین", "total": 145000000 },
+    { "month": "اردیبهشت", "total": 132000000 },
+    { "month": "خرداد", "total": 158000000 },
+    { "month": "تیر", "total": 123000000 }
+  ],
+  "bestSellers": [
+    { "productId": 101, "name": "هدفون بی‌سیم", "salesCount": 120, "revenue": 144000000 },
+    { "productId": 105, "name": "کیبورد مکانیکال", "salesCount": 85, "revenue": 178500000 },
+    { "productId": 103, "name": "ماوس گیمینگ", "salesCount": 95, "revenue": 84550000 },
+    { "productId": 102, "name": "کیف لپ‌تاپ", "salesCount": 60, "revenue": 27000000 },
+    { "productId": 104, "name": "پایه نگهدارنده موبایل", "salesCount": 45, "revenue": 6750000 }
+  ],
+  "revenueComparison": {
+    "currentMonth": 123000000,
+    "previousMonth": 158000000,
+    "growth": -22.15
+  }
+},"reviews": [
+  {
+    "id": 1,
+    "productId": 101,
+    "productName": "هدفون بی‌سیم",
+    "userName": "سارا احمدی",
+    "rating": 4,
+    "comment": "صدای خوبی داره ولی کیفیت ساخت متوسطه",
+    "date": "۱۴۰۳/۰۴/۱۲",
+    "status": "pending",
+    "reply": null
+  },
+  {
+    "id": 2,
+    "productId": 105,
+    "productName": "کیبورد مکانیکال",
+    "userName": "رضا محمدی",
+    "rating": 5,
+    "comment": "عالی و دقیق، برای گیمینگ فوق‌العاده‌ست",
+    "date": "۱۴۰۳/۰۴/۱۰",
+    "status": "approved",
+    "reply": "ممنون از نظرتون"
+  },
+  {
+    "id": 3,
+    "productId": 103,
+    "productName": "ماوس گیمینگ",
+    "userName": "میلاد یوسفی",
+    "rating": 3,
+    "comment": "طراحی خوبی داره ولی یه کمی سنگینه",
+    "date": "۱۴۰۳/۰۴/۰۸",
+    "status": "rejected",
+    "reply": null
+  }
+]
+}
