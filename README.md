@@ -11,7 +11,7 @@
 [![Vite](https://img.shields.io/badge/Vite-6-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
 
-[مشاهده‌ی دمو](https://admin-dash-react.vercel.app) · [گزارش باگ](https://github.com/MobinDe/Admin-Dash-React/issues) · [درخواست فیچر](https://github.com/MobinDe/Admin-Dash-React/issues)
+[مشاهده‌ی دمو](https://admin-dash-react-ylvr.vercel.app/) · [گزارش باگ](https://github.com/MobinDe/Admin-Dash-React/issues) · [درخواست فیچر](https://github.com/MobinDe/Admin-Dash-React/issues)
 
 </div>
 
