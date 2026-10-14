@@ -22,7 +22,7 @@
 <div align="center">
 
 ### 🏠 داشبورد اصلی
-<img src="./public/screenshot/dashboard.png" alt="Dashboard" width="800"/>
+<img src="./public/screenshots/dashboard.png" alt="Dashboard" width="800"/>
 
 <br/>
 <br/>
@@ -32,13 +32,13 @@
 <td align="center" width="50%">
 
 ### 🛒 مدیریت سفارشات
-<img src="./public/screenshot/orders.png" alt="Orders" width="400"/>
+<img src="./public/screenshots/orders.png" alt="Orders" width="400"/>
 
 </td>
 <td align="center" width="50%">
 
 ### 📦 مدیریت محصولات
-<img src="./public/screenshot/products.png" alt="Products" width="400"/>
+<img src="./public/screenshots/products.png" alt="Products" width="400"/>
 
 </td>
 </tr>
@@ -46,7 +46,7 @@
 <td align="center" colspan="2">
 
 ### 👥 مدیریت کاربران
-<img src="./public/screenshot/users.png" alt="Users" width="600"/>
+<img src="./public/screenshots/users.png" alt="Users" width="600"/>
 
 </td>
 </tr>
