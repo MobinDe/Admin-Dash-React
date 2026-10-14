@@ -43,19 +43,19 @@ const OrderTable = () => {
   return (
     <div className="bg-gray-800 rounded-xl border border-gray-700 shadow-lg overflow-hidden">
       {/* هدر با جستجو */}
-      <div className="p-4 border-b border-gray-700 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <div className="px-20 py-4 left-0 border-b border-gray-700 flex flex-col sm:flex-row items-center gap-4">
         <h3 className="text-lg font-semibold text-white">لیست سفارشات</h3>
         <div className="relative">
           <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
           <input
             type="text"
-            placeholder="جستجوی شماره سفارش یا مشتری..."
+            placeholder="جستجوی شماره سفارش"
             value={searchTerm}
             onChange={(e) => {
               setSearchTerm(e.target.value);
               setCurrentPage(1);
             }}
-            className="bg-gray-700 border border-gray-600 rounded-md py-2 pr-10 pl-4 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full sm:w-64"
+            className="bg-gray-700 border border-gray-600 rounded-md py-2  pr-10 pl-8 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full sm:w-64"
           />
         </div>
       </div>

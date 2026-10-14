@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import { Zap, Mail, Lock, LogIn, AlertCircle } from 'lucide-react';
 
@@ -8,12 +8,24 @@ export default function LoginPage() {
   const [password, setPassword] = useState('');
   const { login, loading, error } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // صفحه‌ای که کاربر می‌خواست بره (اگه از ProtectedRoute پرت شده باشه)
+  const from = (location.state as { from?: { pathname: string } })?.from?.pathname || '/';
+
+  // اگه کاربر قبلاً لاگین کرده، مستقیم بره داشبورد
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      navigate(from, { replace: true });
+    }
+  }, [navigate, from]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       await login(email, password);
-      navigate('/'); // هدایت به داشبورد
+      navigate(from, { replace: true });
     } catch {
       // خطا توسط هوک مدیریت می‌شود
     }
@@ -32,7 +44,10 @@ export default function LoginPage() {
         </div>
 
         {/* فرم ورود */}
-        <form onSubmit={handleSubmit} className="bg-gray-800 border border-gray-700 rounded-2xl p-6 shadow-2xl space-y-5">
+        <form
+          onSubmit={handleSubmit}
+          className="bg-gray-800 border border-gray-700 rounded-2xl p-6 shadow-2xl space-y-5"
+        >
           {/* پیام خطا */}
           {error && (
             <div className="flex items-center gap-2 bg-red-900/30 border border-red-700 text-red-300 p-3 rounded-lg text-sm">
@@ -98,7 +113,7 @@ export default function LoginPage() {
 
           {/* اطلاعات آزمایشی */}
           <div className="border-t border-gray-700 pt-4 mt-4">
-            <p className="text-xs text-gray-500 mb-2">اطلاعات تست (هر یک از کاربران داخل db.json)</p>
+            <p className="text-xs text-gray-500 mb-2 text-center">حساب آزمایشی</p>
             <div className="grid grid-cols-2 gap-2 text-xs text-gray-400">
               <div className="bg-gray-700/50 p-2 rounded-lg">
                 <span className="text-gray-500">مدیر:</span> sara@example.com

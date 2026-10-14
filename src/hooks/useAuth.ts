@@ -1,9 +1,16 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axiosInstance from '../api/axiosInstance';
 import type { User } from './useUsers';
 
+const TOKEN_KEY = 'token';
+const USER_KEY = 'user';
+
 export const useAuth = () => {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<User | null>(() => {
+    // وقتی صفحه رفرش میشه، user رو از localStorage بازیابی کن
+    const stored = localStorage.getItem(USER_KEY);
+    return stored ? (JSON.parse(stored) as User) : null;
+  });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -19,10 +26,16 @@ export const useAuth = () => {
       if (!foundUser) {
         throw new Error('ایمیل یا رمز عبور اشتباه است');
       }
+
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { password: _unused, ...safeUser } = foundUser;
+
+      // ✅ توکن بساز و ذخیره کن
+      const fakeToken = `token-${safeUser.id}-${Date.now()}`;
+      localStorage.setItem(TOKEN_KEY, fakeToken);
+      localStorage.setItem(USER_KEY, JSON.stringify(safeUser));
+
       setUser(safeUser as User);
-      localStorage.setItem('user', JSON.stringify(safeUser));
       return safeUser;
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : 'خطای ناشناخته';
@@ -35,7 +48,8 @@ export const useAuth = () => {
 
   const logout = () => {
     setUser(null);
-    localStorage.removeItem('user');
+    localStorage.removeItem(TOKEN_KEY);
+    localStorage.removeItem(USER_KEY);
   };
 
   return { user, loading, error, login, logout };

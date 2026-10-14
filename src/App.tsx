@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { useState } from 'react';
 import AdminHeader from './components/Layout/Header';
 import Sidebar from './components/Layout/Sidebar';
@@ -18,11 +18,21 @@ import ProfilePage from './pages/ProfilePage';
 import MyOrdersPage from './pages/MyOrdersPage';
 import LoginPage from './pages/Login';
 
-function App() {
+// ==================== ProtectedRoute ====================
+const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
+  const token = localStorage.getItem('token');
+  if (!token) {
+    return <Navigate to="/login" replace />;
+  }
+  return <>{children}</>;
+};
+
+// ==================== AdminLayout ====================
+const AdminLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="h-screen flex flex-col bg-gray-900 overflow-hidden">
+    <div className="h-screen flex flex-col bg-gray-900 overflow-hidden" dir="rtl">
       <AdminHeader onMenuClick={() => setSidebarOpen(!sidebarOpen)} />
 
       <div className="flex-1 flex overflow-hidden">
@@ -45,13 +55,32 @@ function App() {
             <Route path="/settings" element={<SettingsPage />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/my-orders" element={<MyOrdersPage />} />
-            <Route path="/login" element={<LoginPage />} />
           </Routes>
         </main>
       </div>
 
       <MobileNav onOpenSidebar={() => setSidebarOpen(true)} />
     </div>
+  );
+};
+
+// ==================== App ====================
+function App() {
+  return (
+    <Routes>
+      {/* صفحه لاگین - آزاد، بدون هدر و سایدبار */}
+      <Route path="/login" element={<LoginPage />} />
+
+      {/* بقیه صفحات - نیاز به لاگین */}
+      <Route
+        path="/*"
+        element={
+          <ProtectedRoute>
+            <AdminLayout />
+          </ProtectedRoute>
+        }
+      />
+    </Routes>
   );
 }
 

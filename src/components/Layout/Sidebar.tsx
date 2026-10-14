@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
 import {
   LayoutDashboard,
   ShoppingCart,
@@ -13,7 +13,7 @@ import {
   Settings,
   LogOut,
   X,
-} from 'lucide-react';
+} from "lucide-react";
 
 interface SidebarProps {
   isOpen: boolean;
@@ -21,17 +21,17 @@ interface SidebarProps {
 }
 
 const menuItems = [
-  { name: 'داشبورد', icon: LayoutDashboard, path: '/' },
-  { name: 'سفارش‌ها', icon: ShoppingCart, path: '/orders' },
-  { name: 'محصولات', icon: Package, path: '/products' },
-  { name: 'کاربران', icon: Users, path: '/users' },
-  { name: 'مشتریان', icon: UserCheck, path: '/customers' },          // آیکن متفاوت برای مشتریان
-  { name: 'دسته‌بندی‌ها', icon: FolderTree, path: '/categories' },
-  { name: 'کدهای تخفیف', icon: Tag, path: '/discounts' },
-  { name: 'گزارش‌ها', icon: BarChart, path: '/reports' },
-  { name: 'نظرات', icon: Star, path: '/reviews' },
-  { name: 'پیام‌ها', icon: Mail, path: '/messages' },
-  { name: 'تنظیمات', icon: Settings, path: '/settings' },
+  { name: "داشبورد", icon: LayoutDashboard, path: "/" },
+  { name: "سفارش‌ها", icon: ShoppingCart, path: "/orders" },
+  { name: "محصولات", icon: Package, path: "/products" },
+  { name: "کاربران", icon: Users, path: "/users" },
+  { name: "مشتریان", icon: UserCheck, path: "/customers" },
+  { name: "دسته‌بندی‌ها", icon: FolderTree, path: "/categories" },
+  { name: "کدهای تخفیف", icon: Tag, path: "/discounts" },
+  { name: "گزارش‌ها", icon: BarChart, path: "/reports" },
+  { name: "نظرات", icon: Star, path: "/reviews" },
+  { name: "پیام‌ها", icon: Mail, path: "/messages" },
+  { name: "تنظیمات", icon: Settings, path: "/settings" },
 ];
 
 const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
@@ -40,15 +40,16 @@ const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
       {/* Overlay برای موبایل */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-20 lg:hidden"
+          className="fixed inset-0 bg-black/50 z-20 lg:hidden"
           onClick={onClose}
         />
       )}
 
-      {/* سایدبار */}
+      {/* سایدبار سمت راست */}
       <aside
+        dir="rtl"
         className={`fixed top-0 right-0 z-30 h-full w-64 bg-gray-800 border-l border-gray-700 transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-auto ${
-          isOpen ? 'translate-x-0' : 'translate-x-full'
+          isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         {/* هدر سایدبار */}
@@ -68,16 +69,16 @@ const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
             <NavLink
               key={item.path}
               to={item.path}
-              onClick={onClose} // بستن سایدبار در موبایل
+              onClick={onClose}
               className={({ isActive }) =>
                 `flex items-center px-4 py-2.5 mx-2 rounded-md transition-colors ${
                   isActive
-                    ? 'bg-gray-700 text-white'
-                    : 'text-gray-300 hover:bg-gray-700 hover:text-white'
+                    ? "bg-gray-700 text-white"
+                    : "text-gray-300 hover:bg-gray-700 hover:text-white"
                 }`
               }
             >
-              <item.icon className="ml-3 h-5 w-5 flex-shrink-0" />
+              <item.icon className="me-3 h-5 w-5 flex-shrink-0" />
               <span>{item.name}</span>
             </NavLink>
           ))}
@@ -88,7 +89,7 @@ const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
               href="/logout"
               className="flex items-center mx-2 px-4 py-2.5 text-red-400 rounded-md hover:bg-red-500/10 transition-colors"
             >
-              <LogOut className="ml-3 h-5 w-5" />
+              <LogOut className="me-3 h-5 w-5" />
               <span>خروج</span>
             </a>
           </div>

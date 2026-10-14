@@ -6,7 +6,7 @@ import {
 } from 'lucide-react';
 import axiosInstance from '../../api/axiosInstance';
 
-// ========== تایپ‌های اضافه‌شده (حداقل تغییر) ==========
+// ========== تایپ‌ها ==========
 interface AdminHeaderProps {
   onMenuClick: () => void;
 }
@@ -47,14 +47,28 @@ const AdminHeader = ({ onMenuClick }: AdminHeaderProps) => {
   const searchRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
-  // آمار لحظه‌ای (استفاده خواهد شد)
+  // ========== تابع خروج ==========
+  const handleLogout = () => {
+    // پاک کردن اطلاعات لاگین
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    localStorage.removeItem('auth');
+    sessionStorage.clear();
+
+    // بستن منو
+    setIsProfileOpen(false);
+
+    // ریدایرکت به صفحه لاگین (بدون امکان برگشت با Back)
+    navigate('/login', { replace: true });
+  };
+  // ================================
+
   const stats = {
     orders: 12,
     revenue: '۲.۵M',
     visitors: 847,
   };
 
-  // دریافت داده‌ها برای جستجو (همان تابع قبلی + تایپ‌ها)
   const fetchSearchData = async (query: string) => {
     if (!query.trim()) {
       setSearchResults([]);
@@ -114,7 +128,6 @@ const AdminHeader = ({ onMenuClick }: AdminHeaderProps) => {
     }
   };
 
-  // Debounce (بدون تغییر)
   useEffect(() => {
     const timer = setTimeout(() => {
       fetchSearchData(searchQuery);
@@ -122,7 +135,6 @@ const AdminHeader = ({ onMenuClick }: AdminHeaderProps) => {
     return () => clearTimeout(timer);
   }, [searchQuery]);
 
-  // بستن منوی جستجو با کلیک بیرون (تایپ event)
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
@@ -133,14 +145,12 @@ const AdminHeader = ({ onMenuClick }: AdminHeaderProps) => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // کلیک روی هر نتیجه (تایپ link)
   const handleResultClick = (link: string) => {
     setIsSearchOpen(false);
     setSearchQuery('');
     navigate(link);
   };
 
-  // ========== JSX کاملاً مطابق کد اصلی شما ==========
   return (
     <header className="bg-gray-900/90 backdrop-blur-xl border-b border-gray-800 sticky top-0 z-30 w-full shadow-2xl shadow-black/20">
       <div className="px-4 sm:px-6 lg:px-8">
@@ -199,7 +209,6 @@ const AdminHeader = ({ onMenuClick }: AdminHeaderProps) => {
                 </button>
               )}
 
-              {/* نتایج جستجو */}
               {isSearchOpen && searchResults.length > 0 && (
                 <div className="absolute top-full mt-2 w-full rounded-2xl shadow-2xl bg-gray-800 border border-gray-700 overflow-hidden z-50 animate-in fade-in slide-in-from-top-2 duration-200">
                   <div className="p-2">
@@ -245,7 +254,6 @@ const AdminHeader = ({ onMenuClick }: AdminHeaderProps) => {
 
           {/* سمت چپ */}
           <div className="flex items-center gap-1.5">
-            {/* آمار لحظه‌ای (استفاده از stats) */}
             <div className="hidden lg:flex items-center gap-3 mr-4">
               <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-gray-800 border border-gray-700">
                 <TrendingUp className="h-4 w-4 text-green-400" />
@@ -257,7 +265,7 @@ const AdminHeader = ({ onMenuClick }: AdminHeaderProps) => {
               </div>
             </div>
 
-            {/* اعلان‌ها (isNotificationsOpen و setIsNotificationsOpen استفاده می‌شود) */}
+            {/* اعلان‌ها */}
             <div className="relative">
               <button
                 onClick={() => setIsNotificationsOpen(!isNotificationsOpen)}
@@ -320,7 +328,7 @@ const AdminHeader = ({ onMenuClick }: AdminHeaderProps) => {
 
             <div className="h-8 w-px bg-gray-700 mx-1 hidden sm:block"></div>
 
-            {/* پروفایل (isProfileOpen و setIsProfileOpen استفاده می‌شود) */}
+            {/* پروفایل */}
             <div className="relative">
               <button
                 onClick={() => setIsProfileOpen(!isProfileOpen)}
@@ -369,7 +377,10 @@ const AdminHeader = ({ onMenuClick }: AdminHeaderProps) => {
                       </Link>
                     </div>
                     <div className="border-t border-gray-700 p-3">
-                      <button className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-red-400 hover:bg-red-500/10 hover:text-red-300 transition-all text-sm group">
+                      <button
+                        onClick={handleLogout}
+                        className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-red-400 hover:bg-red-500/10 hover:text-red-300 transition-all text-sm group"
+                      >
                         <LogOut className="h-4.5 w-4.5" />
                         <span>خروج از حساب کاربری</span>
                       </button>
